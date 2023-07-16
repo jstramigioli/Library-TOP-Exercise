@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Flamenco:wght@300;400&family=Hind+Guntur:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">   
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div id="general-container">
+        <header>
+            <h1>Books that you read</h1>
+        </header>
+        <div id="main-content">
+            <form id="book-form">
+                <div class="form-input">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-input">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+                <div class="form-input">
+                    <label for="pages">Number of pages</label>
+                    <input type="number" id="pages" name="pages" required>
+                </div>
+                <div class="form-input">
+                    <label for="read">Read</label>
+                    <input type="checkbox" id="read" name="read">
+                </div>
+                <input class='submit' type="submit" value="Add book">
+              </form>
+
+            <table id="books-table">
+                <tr>
+                    <th style="width: 35%;">Title</th>
+                    <th style="width: 35%;">Author</th>
+                    <th style="width: 15%;">Number of pages</th>
+                    <th style="width: 12%;">Have you read it?</th>
+                    <th style="width: 3%;"></th>
+                </tr>
+
+                <tr id="end-table"></tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

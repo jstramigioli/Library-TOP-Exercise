@@ -1,0 +1,208 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+:root {
+    --main-font: 'Didact Gothic', sans-serif;
+    --light-font: 'Flamenco', cursive;
+    --text-font: 'Hind Guntur', sans-serif;
+    font-size: 15px;
+}
+
+* {
+    box-sizing: border-box;
+  }
+
+#general-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+}
+
+header {
+    background-color: darkgoldenrod;
+    width: min(100%, 1000px);
+    height: 120px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+header h1 {
+    font-family: var(--main-font);
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+}
+
+#main-content {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    width: min(100%, 1000px);
+    gap: 3rem;
+}
+
+#book-form {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: dimgrey;
+    border-radius: 15px;
+    align-items: center;
+    padding: 2rem 10rem;
+
+    gap: 2rem;
+}
+
+.form-input {
+    flex-grow: 1;
+}
+
+#book-form label {
+    font-family: var(--text-font);
+    font-weight: bold;
+    display: block;
+    color: white;
+    font-size: 2.2rem;
+}
+
+#book-form input {
+    font-family: var(--light-font);
+    border-style: none;
+    border-radius: 50vh;
+    font-size: 2rem;
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+#book-form input[type="checkbox"] {
+    cursor: pointer;
+    background-color: #fff;
+    width: 2rem;
+    height: 2rem;
+    appearance: none;
+    font-family: var(--light-font);
+}
+
+#book-form input[type="checkbox"]:checked {
+    background-color: darkgreen;
+}
+
+#book-form input[type="checkbox"]:checked::after {
+    content: "Yes, I've read it";
+    white-space: nowrap;
+    color: white;
+    margin-left: 3rem;
+}
+
+#book-form input[type="checkbox"]:not(:checked) {
+    background-color: crimson;
+}
+
+
+#book-form input[type="checkbox"]:not(:checked)::after {
+    content: 'No, not yet';
+    white-space: nowrap;
+    color: white;
+    margin-left: 3rem;
+}
+
+#book-form .submit {
+    background-color:  darkgoldenrod;
+    padding: 0.3rem 0;
+    color: white;
+    font-family: var(--main-font);
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+
+#books-table {
+    background-color: black;
+    border-radius: 15px;
+    color: white;
+    font-size: 1.5rem;
+    font-family: var(--text-font);
+    padding: 2rem 10rem;
+}
+
+th {
+    font-weight: bold;
+    padding: 9px;
+    vertical-align: middle;
+}
+
+td {
+    background-color: white;
+    color: black;
+    padding: 0.5rem;
+    text-align: center;
+    border-bottom-style: solid;
+    border-color: darkgray;
+    border-width: 1px;
+    justify-items: center;
+}
+
+.read-or-not {
+    background-color: darkgreen;
+    height: 1.5rem;
+    width: 100%;
+    border-radius: 50vh;
+}
+
+.not-read {
+    background-color: crimson;
+}
+
+#end-table {
+    background-color: black;
+    height: 2rem;
+}
+
+.delete-icon {
+    width: 30px;
+    height: 30px;
+}
