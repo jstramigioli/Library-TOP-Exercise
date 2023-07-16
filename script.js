@@ -15,6 +15,15 @@ function Book(title, author, pages, read) {
 	}
 }
 
+Book.prototype.toggleReadMethod = function() {
+	if (this.read == true) {
+		this.read = false
+	}
+	else {
+		this.read = true
+	}
+}
+
 function addBookToDOM(book, i) {
 	let newRow = document.createElement('tr');
 
@@ -32,11 +41,12 @@ function addBookToDOM(book, i) {
 	let readCell = document.createElement('td');
 	let readOrNotDiv = document.createElement('div');
 	readOrNotDiv.classList.add('read-or-not');
-	readOrNotDiv.dataset.position = tablePosition
 	book.read ? null : readOrNotDiv.classList.add('not-read');
 	readCell.appendChild(readOrNotDiv);
 	readOrNotDiv.addEventListener('click', function (e) {
-		toggleRead(e)
+		//toggleRead(e)
+		myLibrary[tablePosition].toggleReadMethod();
+		updateDOM(myLibrary)
 	})
 
 	let deleteCell = document.createElement('td');
@@ -88,18 +98,6 @@ booksForm.addEventListener('submit', function (e) {
 	addBookToLibrary(e);
 	updateDOM(myLibrary)
 })
-
-function toggleRead(e) {
-	//book.read ? book.read = false : book.read;
-	//e.target.classList.toggle('not-read')
-	if (myLibrary[e.target.dataset.position].read) {
-		myLibrary[e.target.dataset.position].read = false
-	}
-	else {
-		myLibrary[e.target.dataset.position].read = true
-	}
-	updateDOM(myLibrary)
-}
 
 function deleteBook(e) {
 	//e.target.parentNode.parentNode.remove()
