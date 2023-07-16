@@ -15,8 +15,10 @@ function Book(title, author, pages, read) {
 	}
 }
 
-function addBookToDOM(book) {
+function addBookToDOM(book, i) {
 	let newRow = document.createElement('tr');
+
+	let tablePosition = i
 
 	let titleCell = document.createElement('td');
 	titleCell.textContent = book.title;
@@ -30,19 +32,21 @@ function addBookToDOM(book) {
 	let readCell = document.createElement('td');
 	let readOrNotDiv = document.createElement('div');
 	readOrNotDiv.classList.add('read-or-not');
+	readOrNotDiv.dataset.position = tablePosition
 	book.read ? null : readOrNotDiv.classList.add('not-read');
 	readCell.appendChild(readOrNotDiv);
 	readOrNotDiv.addEventListener('click', function (e) {
-		toggleRead(book, e)
+		toggleRead(e)
 	})
 
 	let deleteCell = document.createElement('td');
 	let deleteIcon = document.createElement('img');
 	deleteIcon.classList.add('delete-icon');
+	deleteIcon.dataset.position = tablePosition
 	deleteIcon.src = "delete-left-solid.svg";
 	deleteCell.appendChild(deleteIcon)
 	deleteIcon.addEventListener('click', function (e) {
-		deleteBook(book, e)
+		deleteBook(e)
 	})
 
 	newRow.appendChild(titleCell);
@@ -56,7 +60,22 @@ function addBookToDOM(book) {
 
 function addBookToLibrary(e) {
 	let book = createBook(e.target.elements.title.value, e.target.elements.author.value, e.target.elements.pages.value, e.target.elements.read.checked)
-	addBookToDOM(book)
+	myLibrary.push(book)
+	//addBookToDOM(book)
+}
+
+function updateDOM(array) {
+	clearTable();
+	for (let i = 0; i < array.length; i++) {
+		addBookToDOM(array[i], i)
+	}
+}
+
+function clearTable() {
+	let tableElements = booksTable.firstElementChild.childElementCount;
+	for (let i = 0; i < tableElements-2; i++) {
+		booksTable.firstElementChild.removeChild(booksTable.firstElementChild.children[1])
+	}
 }
 
 function createBook(title, author, pages, read) {
@@ -66,14 +85,24 @@ function createBook(title, author, pages, read) {
 
 booksForm.addEventListener('submit', function (e) {
 	e.preventDefault()
-	addBookToLibrary(e)
+	addBookToLibrary(e);
+	updateDOM(myLibrary)
 })
 
-function toggleRead(book, e) {
-	book.read ? book.read = false : book.read;
-	e.target.classList.toggle('not-read')
+function toggleRead(e) {
+	//book.read ? book.read = false : book.read;
+	//e.target.classList.toggle('not-read')
+	if (myLibrary[e.target.dataset.position].read) {
+		myLibrary[e.target.dataset.position].read = false
+	}
+	else {
+		myLibrary[e.target.dataset.position].read = true
+	}
+	updateDOM(myLibrary)
 }
 
-function deleteBook(book, e) {
-	e.target.parentNode.parentNode.remove()
+function deleteBook(e) {
+	//e.target.parentNode.parentNode.remove()
+	myLibrary.splice(e.target.dataset.position,1);
+	updateDOM(myLibrary)
 }
