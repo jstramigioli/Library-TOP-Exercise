@@ -5,7 +5,7 @@ const booksTableEnd = document.getElementById('end-table')
 
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
+/*function Book(title, author, pages, read) {
 	this.title = title
 	this.author = author
 	this.pages = pages
@@ -21,6 +21,27 @@ Book.prototype.toggleReadMethod = function() {
 	}
 	else {
 		this.read = true
+	}
+} */
+
+class Book {
+	constructor(title, author, pages, read) {
+		this.title = title
+		this.author = author
+		this.pages = pages
+		this.read = read
+		this.info = function() {
+			return [title, author, pages, read]
+		}
+	}
+
+	toggleReadMethod() {
+		if (this.read == true) {
+			this.read = false
+		}
+		else {
+			this.read = true
+		}
 	}
 }
 
