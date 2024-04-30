@@ -44,7 +44,6 @@ function addBookToDOM(book, i) {
 	book.read ? null : readOrNotDiv.classList.add('not-read');
 	readCell.appendChild(readOrNotDiv);
 	readOrNotDiv.addEventListener('click', function (e) {
-		//toggleRead(e)
 		myLibrary[tablePosition].toggleReadMethod();
 		updateDOM(myLibrary)
 	})
@@ -71,7 +70,6 @@ function addBookToDOM(book, i) {
 function addBookToLibrary(e) {
 	let book = createBook(e.target.elements.title.value, e.target.elements.author.value, e.target.elements.pages.value, e.target.elements.read.checked)
 	myLibrary.push(book)
-	//addBookToDOM(book)
 }
 
 function updateDOM(array) {
@@ -100,7 +98,28 @@ booksForm.addEventListener('submit', function (e) {
 })
 
 function deleteBook(e) {
-	//e.target.parentNode.parentNode.remove()
 	myLibrary.splice(e.target.dataset.position,1);
 	updateDOM(myLibrary)
+}
+
+const submitBtn = document.querySelector('#submit')
+submitBtn.addEventListener('click', () => {
+	titleValidation()
+	authorValidation()
+})
+
+function titleValidation() {
+	const titleInput = document.querySelector('#title')
+	if (titleInput.validity.valueMissing) {
+		titleInput.setCustomValidity('Please enter the title of your book')
+	}
+	else titleInput.setCustomValidity('')
+}
+
+function authorValidation() {
+	const authorInput = document.querySelector('#author')
+	if (authorInput.validity.valueMissing) {
+		authorInput.setCustomValidity('Please enter the author of your book')
+	}
+	else authorInput.setCustomValidity('')
 }
